@@ -1,57 +1,60 @@
-# Kirby Pluginkit: Example plugin for Kirby
-
-> Variant "Basic setup"
-
-This is a boilerplate for a Kirby plugin that can be installed via all three [supported installation methods](https://getkirby.com/docs/guide/plugins/plugin-setup-basic#the-three-plugin-installation-methods).
-
-You can find a list of Pluginkit variants on the [`master` branch](https://github.com/getkirby/pluginkit/tree/master).
-
-****
-
-## How to use the Pluginkit
-
-1. Fork this repository
-2. Change the plugin name and description in the `composer.json`
-3. Change the plugin name in the `index.php`
-4. Change the license if you don't want to publish under MIT
-5. Add your plugin code to the `index.php`
-6. Update this `README` with instructions for your plugin
-
-We have a tutorial on how to build your own plugin based on the Pluginkit [in the Kirby documentation](https://getkirby.com/docs/guide/plugins/plugin-setup-basic).
-
-What follows is an example README for your plugin.
-
-****
+# Kirby 2fa
 
 ## Installation
 
+Before install, have in mind that the only way to implement this is by replacing the default [panel login view](https://getkirby.com/docs/reference/plugins/extensions/panel-login). Hence if you have your implementation, install this plugin can be conflictive.
+
 ### Download
 
-Download and copy this repository to `/site/plugins/{{ plugin-name }}`.
-
-### Git submodule
-
-```
-git submodule add https://github.com/{{ your-name }}/{{ plugin-name }}.git site/plugins/{{ plugin-name }}
-```
+Download and copy this repository to `/site/plugins/` path.
 
 ### Composer
 
 ```
-composer require {{ your-name }}/{{ plugin-name }}
+composer require rtorresn10/kirby-2fa
 ```
 
 ## Setup
 
-*Additional instructions on how to configure the plugin (e.g. blueprint setup, config options, etc.)*
+1. Add a field in your user blueprint
+  ```
+    auth:
+      type: 2fa
+  ```
 
-## Options
+2. In the panel, follow the steps.
 
-*Document the options and APIs that this plugin offers*
+*Upload a image example*
 
-## Development
+****
 
-*Add instructions on how to help working on the plugin (e.g. npm setup, Composer dev dependencies, etc.)*
+You can add to your config file where you want the auth data will be stored, which must be a SQL lite file. Don't worry about creating the file you only need to specify the path. the file will be auto-created and configured if it doesn't exist.
+
+```
+  'graphicmarket.kirby-2fa.database' => 'full/path/to/db.sqlite'
+```
+
+Too, you can use a function that returns a string, if you wish to use the `kirby()` helper.
+
+```
+  'graphicmarket.kirby-2fa.database' => function () {
+      return kirby()->root('storage') . '/kirby-2fa/db.sqlite';
+  },
+```
+
+Change the issuer sounds like something that may you want to change. The issuer is the identifier that will be displayed on the app that you use to save your auth code.
+
+*Upload image example*
+
+```
+  'graphicmarket.kirby-2fa.issuer' => 'Your company/website name',
+```
+
+
+## Improvements and Features
+
+1. Passwordless login
+2. Implements own QRProvider.
 
 ## License
 
@@ -59,4 +62,4 @@ MIT
 
 ## Credits
 
-- [Your Name](https://github.com/ghost)
+- [Ronald Torres](https://github.com/rtorresn10)
