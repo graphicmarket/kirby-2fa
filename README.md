@@ -42,7 +42,7 @@ Too, you can use a function that returns a string, if you wish to use the `kirby
   },
 ```
 
-Change the issuer sounds like something that may you want to change. The issuer is the identifier that will be displayed on the app that you use to save your auth code.
+Change the issuer sounds like something that may you want to change. The issuer is the identifier that will be displayed on the authentication app.
 
 *Upload image example*
 
