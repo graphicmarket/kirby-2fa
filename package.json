@@ -13,7 +13,7 @@
     "panel"
   ],
   "author": "Graphic Market, Inc",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "components": "^0.1.0",
     "vue": "^2.6.10",
