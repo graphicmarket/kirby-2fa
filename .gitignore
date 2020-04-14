@@ -1,0 +1,20 @@
+# composer
+vendor
+vendor/**/*.*
+
+# OSX
+.DS_Store
+
+# npm
+node_modules
+
+# parcel
+.cache
+
+# plugin
+db
+
+# test
+tests
+.php_cs.cache
+.phpunit.result.cache

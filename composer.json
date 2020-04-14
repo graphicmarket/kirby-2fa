@@ -1,0 +1,20 @@
+{
+    "name": "graphicmarket/kirby-2fa",
+    "description": "Multifactor Authenctication for kirby panel",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Graphic Market",
+            "email": "developers@graphic.market"
+        }
+    ],
+    "require": {
+        "getkirby/composer-installer": "^1.1",
+        "robthree/twofactorauth": "^1.7"
+    },
+    "extra": {
+        "installer-name": "kirby-2fa"
+    },
+    "minimum-stability": "beta"
+}
