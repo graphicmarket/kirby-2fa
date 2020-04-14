@@ -15,7 +15,7 @@
     "2fa",
     "tfa"
   ],
-  "author": "Ronald Torres",
+  "author": "Graphic Market, Inc",
   "license": "MIT",
   "dependencies": {
     "components": "^0.1.0",

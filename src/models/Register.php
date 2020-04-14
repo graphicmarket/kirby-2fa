@@ -73,6 +73,7 @@ class Register {
      * @return void
      */
     private function setupDB() {
+        
         $file = option('graphicmarket.kirby-2fa.database');
 
         if(is_callable($file)){

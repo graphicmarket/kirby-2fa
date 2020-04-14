@@ -2,8 +2,6 @@
 
 namespace graphicmarket\kirby2fa;
 
-use graphicmarket\kirby2fa\Authenticator;
-
 return [
     'routes' => function ($kirby) {
         return [
@@ -27,7 +25,7 @@ return [
                         } else {
                             return [
                                 'valid' => false,
-                                'issue' => 'invalid email or password',
+                                'issue' => 'Invalid email or password',
                             ];
                         }
 
@@ -72,14 +70,11 @@ return [
                 },
             ],
             [
-                'pattern' => 'kirby-2fa/verify-auth-code',
+                'pattern' => 'kirby-2fa/auth/code',
                 'method' => 'POST',
                 'auth' => false,
-                'action' => function () use ($kirby) {
-
-                    $auth = new Authenticator(get('email'));
-                    $verify = $auth->verifyCode(get('code'));
-
+                'action' => function () {
+                    $verify = (new Authenticator(get('email')))->verifyCode(get('code'));
                     return compact('verify');
                 },
             ],

@@ -1,28 +1,34 @@
 {
-    "name": "graphicmarket/kirby-2fa",
-    "description": "Multifactor Authenctication for kirby panel",
-    "type": "kirby-plugin",
-    "license": "MIT",
-    "keywords": [
-        "kirby3",
-        "kirby3-cms",
-        "kirby3-plugin",
-        "kirby3-panel",
-        "2fa",
-        "tfa"
-    ],
-    "authors": [
-        {
-            "name": "Ronald Torres",
-            "email": "ronald@graphic.market"
-        }
-    ],
-    "require": {
-        "getkirby/composer-installer": "^1.1",
-        "robthree/twofactorauth": "^1.7"
-    },
-    "extra": {
-        "installer-name": "kirby-2fa"
-    },
-    "minimum-stability": "beta"
+  "name": "graphicmarket/kirby-2fa",
+  "description": "Multifactor Authenctication for kirby panel",
+  "type": "kirby-plugin",
+  "license": "MIT",
+  "keywords": [
+    "kirby3",
+    "kirby3-cms",
+    "kirby3-plugin",
+    "kirby3-panel",
+    "2fa",
+    "tfa"
+  ],
+  "authors": [{
+    "name": "Graphic Market, Inc.",
+    "email": "developers@graphic.market"
+  }],
+  "require": {
+    "getkirby/composer-installer": "^1.1",
+    "robthree/twofactorauth": "^1.7"
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "autoload": {
+    "psr-4": {
+      "graphicmarket\\kirby2fa\\": "src/models/"
+    }
+  },
+  "extra": {
+    "installer-name": "kirby-2fa"
+  },
+  "minimum-stability": "beta"
 }

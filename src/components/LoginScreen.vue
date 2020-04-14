@@ -7,8 +7,8 @@
       <k-icon type="alert" />
     </div>
 
-    <template v-if="reqire2fa">
-      <k-text-field v-model="code" name="code" label="2fa Authentication code"></k-text-field>
+    <template v-if="require2fa">
+      <k-text-field v-model="code" name="code" label="Authentication code"></k-text-field>
       <div class="k-login-buttons">
         <k-button class="k-login-button" icon="check" type="submit">
           {{ $t("login") }}
@@ -42,7 +42,7 @@ export default {
     return {
       isLoading: false,
       issue: "",
-      reqire2fa: false,
+      require2fa: false,
       code: "",
       user: {
         email: "",
@@ -77,7 +77,7 @@ export default {
       this.issue = null;
       this.isLoading = true;
 
-      if (this.reqire2fa) {
+      if (this.require2fa) {
         this.verify2FACode();
       } else {
         this.$api
@@ -85,7 +85,7 @@ export default {
           .then(({ valid, tfa, issue }) => {
             if (valid) {
               if (tfa) {
-                this.reqire2fa = tfa;
+                this.require2fa = tfa;
               } else {
                 this.auth();
               }
@@ -119,7 +119,7 @@ export default {
 
     verify2FACode() {
       this.$api
-        .post("kirby-2fa/verify-auth-code", {
+        .post("kirby-2fa/auth/code", {
           code: this.code,
           email: this.user.email
         })
