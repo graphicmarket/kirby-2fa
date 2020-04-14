@@ -1,0 +1,15 @@
+# Git
+.editorconfig export-ignore
+.github/ export-ignore
+.gitattributes export-ignore
+.gitignore export-ignore
+
+# npm & composer
+package.json export-ignore
+yarn.lock export-ignore
+composer.lock export-ignore
+
+# Directories
+src/components/ export-ignore
+src/index.js export-ignore
+tests/ export-ignore
