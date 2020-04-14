@@ -11,7 +11,7 @@ Download and copy this repository to `/site/plugins/` path.
 ### Composer
 
 ```
-composer require rtorresn10/kirby-2fa
+composer require graphicmarket/kirby-2fa
 ```
 
 ## Setup
