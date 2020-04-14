@@ -54,8 +54,10 @@ Change the issuer sounds like something that may you want to change. The issuer 
 
 ## Improvements and Features
 
-1. Passwordless login
+1. Passwordless login (Email/SMS)
 2. Implements own QRProvider.
+3. Save data in the user's DB
+4. Choose the driver storge
 
 ## License
 
@@ -63,7 +65,7 @@ MIT
 
 ## Disclaimer
 
-This plugin is provided "as is" with no guarantee. Use it at your own risk and always test it yourself before using it in a production environment. If you find any issues, please [create a new issue](https://github.com/rtorresn10/kirby-2fa/issues/new/choose).
+This plugin is provided "as is" with no guarantee. Use it at your own risk and always test it yourself before using it in a production environment. If you find any issues, please [create a new issue](https://github.com/graphicmarket/kirby-2fa/issues/new/choose).
 
 ## Credits
 
