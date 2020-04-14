@@ -1,5 +1,6 @@
 # Kirby 2fa
 *Add description and cover*
+
 ## Installation
 
 Before install, have in mind that the only way to implement this is by replacing the default [panel login view](https://getkirby.com/docs/reference/plugins/extensions/panel-login). Hence if you have your implementation, install this plugin can be conflictive.
@@ -59,6 +60,10 @@ Change the issuer sounds like something that may you want to change. The issuer 
 ## License
 
 MIT
+
+## Disclaimer
+
+This plugin is provided "as is" with no guarantee. Use it at your own risk and always test it yourself before using it in a production environment. If you find any issues, please [create a new issue](https://github.com/rtorresn10/kirby-2fa/issues/new/choose).
 
 ## Credits
 
