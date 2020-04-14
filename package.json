@@ -8,11 +8,14 @@
     "build": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting -d ./"
   },
   "keywords": [
-    "kirby",
-    "plugins",
-    "panel"
+    "kirby3",
+    "kirby3-cms",
+    "kirby3-plugin",
+    "kirby3-panel",
+    "2fa",
+    "tfa"
   ],
-  "author": "Graphic Market, Inc",
+  "author": "Ronald Torres",
   "license": "MIT",
   "dependencies": {
     "components": "^0.1.0",

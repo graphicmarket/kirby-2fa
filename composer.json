@@ -3,10 +3,18 @@
     "description": "Multifactor Authenctication for kirby panel",
     "type": "kirby-plugin",
     "license": "MIT",
+    "keywords": [
+        "kirby3",
+        "kirby3-cms",
+        "kirby3-plugin",
+        "kirby3-panel",
+        "2fa",
+        "tfa"
+    ],
     "authors": [
         {
-            "name": "Graphic Market",
-            "email": "developers@graphic.market"
+            "name": "Ronald Torres",
+            "email": "ronald@graphic.market"
         }
     ],
     "require": {
