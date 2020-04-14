@@ -1,5 +1,5 @@
 # Kirby 2fa
-
+*Add description and cover*
 ## Installation
 
 Before install, have in mind that the only way to implement this is by replacing the default [panel login view](https://getkirby.com/docs/reference/plugins/extensions/panel-login). Hence if you have your implementation, install this plugin can be conflictive.
