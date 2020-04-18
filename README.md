@@ -56,7 +56,7 @@ Change the issuer sounds like something that may you want to make. The issuer is
 
 ## Recommendation
 
-Set in your auth options to a lower number of trials by following the Kirby [panel security options](https://getkirby.com/docs/reference/system/options/auth). five its ok for me.
+Set in your auth options a lower number of trials by following the Kirby [panel security options](https://getkirby.com/docs/reference/system/options/auth). five its ok for me.
 
 ## Improvements and future features
 
