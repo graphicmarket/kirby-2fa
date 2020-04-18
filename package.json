@@ -1,6 +1,6 @@
 {
   "name": "kirby-2fa",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Multifactor authentication for kirby panel",
   "main": "index.js",
   "scripts": {
