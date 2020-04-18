@@ -13,3 +13,5 @@ composer.lock export-ignore
 src/components/ export-ignore
 src/index.js export-ignore
 tests/ export-ignore
+README.md export-ignore
+LICENSE export-ignore

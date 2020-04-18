@@ -8,7 +8,7 @@
     </div>
 
     <template v-if="require2fa">
-      <k-text-field v-model="code" name="code" label="Authentication code"></k-text-field>
+      <k-text-field v-model="code" v-bind="codeField"></k-text-field>
       <div class="k-login-buttons">
         <k-button class="k-login-button" icon="check" type="submit">
           {{ $t("login") }}
@@ -22,9 +22,9 @@
       <div class="k-login-buttons">
         <span class="k-login-checkbox">
           <k-checkbox-input
-            :value="user.remember"
+            :value="user.long"
             :label="$t('login.remember')"
-            @input="user.remember = $event"
+            @input="user.long = $event"
           />
         </span>
         <k-button class="k-login-button" icon="check" type="submit">
@@ -40,15 +40,16 @@
 export default {
   data() {
     return {
+      code: "",
       isLoading: false,
       issue: "",
       require2fa: false,
-      code: "",
       user: {
         email: "",
         password: "",
-        remember: false
-      }
+        long: false
+      },
+      tfa_session_id: ""
     };
   },
   computed: {
@@ -70,6 +71,15 @@ export default {
           counter: false
         }
       };
+    },
+    codeField() {
+      return {
+        name: "code",
+        label: "Authentication code",
+        minLength: 6,
+        maxLength: 6,
+        counter: false,
+      };
     }
   },
   methods: {
@@ -78,66 +88,62 @@ export default {
       this.isLoading = true;
 
       if (this.require2fa) {
-        this.verify2FACode();
+        this.auth2FA();
       } else {
-        this.$api
-          .post("kirby-2fa/auth", this.user)
-          .then(({ valid, tfa, issue }) => {
-            if (valid) {
-              if (tfa) {
-                this.require2fa = tfa;
-              } else {
-                this.auth();
-              }
-            } else {
-              this.issue = issue;
-            }
-          })
-          .catch(err => {})
-          .finally(() => {
-            this.isLoading = false;
-          });
+        this.auth();
       }
     },
 
     auth() {
-      this.issue = null;
-      this.isLoading = true;
-      this.$store
-        .dispatch("user/login", this.user)
-        .then(() => {
-          this.$store.dispatch("system/load", true).then(() => {
-            this.$store.dispatch("notification/success", this.$t("welcome"));
-            this.isLoading = false;
-          });
+      this.$api
+        .post("kirby-2fa/auth/login", this.user)
+        .then(({ code, user, tfa_session_id }) => {
+          if (code === 202) {
+            this.require2fa = true;
+            this.tfa_session_id = tfa_session_id;
+          } else if (code === 200 && user) {
+            this.initialize(user);
+          }
         })
-        .catch(() => {
-          this.issue = this.$t("error.access.login");
+        .catch(({ message }) => {
+          this.issue = message;
+        })
+        .finally(() => {
           this.isLoading = false;
         });
     },
 
-    verify2FACode() {
+    auth2FA() {
       this.$api
         .post("kirby-2fa/auth/code", {
-          code: this.code,
-          email: this.user.email
+          tfa_session_id: this.tfa_session_id,
+          long: this.user.long,
+          code: this.code
         })
-        .then(({ verify }) => {
-          if (verify) {
-            this.auth();
-          } else {
-            this.issue = "Invalid code";
-            this.isLoading = false;
-          }
+        .then(({ code, status, user }) => {
+          this.initialize(user);
         })
-        .catch(res => {});
+        .catch(err => {
+          this.issue = err.message;
+          this.isLoading = false;
+        });
+    },
+
+    initialize(user) {
+      this.$store.dispatch("user/current", user);
+      this.$store.dispatch("translation/activate", user.language, {
+        root: true
+      });
+      this.$router.push(this.$store.state.path || "/");
+      this.$store.dispatch("system/load", true).then(() => {
+        this.$store.dispatch("notification/success", this.$t("welcome"));
+        this.isLoading = false;
+      });
     }
   }
 };
 </script>
 
-</style>
 <style>
 .k-login-form label abbr {
   visibility: hidden;

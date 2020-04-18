@@ -30,7 +30,7 @@ return [
             'created_at' => date('Y-m-d H:i:s'),
         ]);
 
-        (new Authenticator())->removeFromCache();
+        (new TwoFactorAuthentication())->removeFromCache();
 
         return $this;
     },

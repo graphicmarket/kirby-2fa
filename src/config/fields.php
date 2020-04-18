@@ -5,7 +5,7 @@ namespace graphicmarket\kirby2fa;
 return [
     '2fa' => [
         'computed' => [
-            'userHas2faAuthentication' => function () {
+            'userHasTwoFactorAuth' => function () {
                 return kirby()->user()->has2FA();
             },
         ],

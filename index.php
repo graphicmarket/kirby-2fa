@@ -11,4 +11,5 @@ App::plugin('graphicmarket/kirby-2fa', [
     'api' => require 'src/config/api.php',
     'fields' => require 'src/config/fields.php',
     'userMethods' => require 'src/config/userMethods.php',
+    'hooks' => require 'src/config/hooks.php',
 ]);

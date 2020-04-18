@@ -7,11 +7,10 @@ use Kirby\Database\Database;
 use Kirby\Toolkit\F;
 
 /**
- * Model to handle the users as registers in the database
+ * Handle the users as registers in the database
  * 
  *
  * @author    Ronald Torres <ronald@graphic.market>
- * @license   https://opensource.org/licenses/MIT
  */
 
 class Register {

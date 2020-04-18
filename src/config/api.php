@@ -6,30 +6,19 @@ return [
     'routes' => function ($kirby) {
         return [
             [
-                'pattern' => 'kirby-2fa/auth',
+                'pattern' => 'kirby-2fa/auth/login',
                 'method' => 'POST',
                 'auth' => false,
-                'action' => function () use ($kirby) {
-
-                    if ($email = get('email') and $password = get('password')) {
-
-                        $user = $kirby->user($email);
-
-                        if ($user && $user->validatePassword($password)) {
-
-                            return [
-                                'valid' => true,
-                                'tfa' => $user->has2FA(),
-                            ];
-
-                        } else {
-                            return [
-                                'valid' => false,
-                                'issue' => 'Invalid email or password',
-                            ];
-                        }
-
-                    }
+                'action' => function () {
+                    return Login::auth();
+                },
+            ],
+            [
+                'pattern' => 'kirby-2fa/auth/code',
+                'method' => 'POST',
+                'auth' => false,
+                'action' => function () {
+                    return Login::auth2FA();
                 },
             ],
             [
@@ -37,7 +26,7 @@ return [
                 'method' => 'POST',
                 'action' => function () {
 
-                    $auth = new Authenticator();
+                    $auth = new TwoFactorAuthentication();
 
                     return [
                         'secret' => $auth->getSecret(),
@@ -59,22 +48,13 @@ return [
                 'method' => 'POST',
                 'action' => function () use ($kirby) {
 
-                    $auth = new Authenticator();
+                    $auth = new TwoFactorAuthentication();
                     $verify = $auth->verifyCode(get('code'));
 
                     if ($verify) {
                         $kirby->user()->enable2FA($auth->getSecret());
                     }
 
-                    return compact('verify');
-                },
-            ],
-            [
-                'pattern' => 'kirby-2fa/auth/code',
-                'method' => 'POST',
-                'auth' => false,
-                'action' => function () {
-                    $verify = (new Authenticator(get('email')))->verifyCode(get('code'));
                     return compact('verify');
                 },
             ],

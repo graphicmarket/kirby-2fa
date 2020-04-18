@@ -26,6 +26,7 @@ return array(
     'RobThree\\Auth\\Providers\\Time\\NTPTimeProvider' => $vendorDir . '/robthree/twofactorauth/lib/Providers/Time/NTPTimeProvider.php',
     'RobThree\\Auth\\TwoFactorAuth' => $vendorDir . '/robthree/twofactorauth/lib/TwoFactorAuth.php',
     'RobThree\\Auth\\TwoFactorAuthException' => $vendorDir . '/robthree/twofactorauth/lib/TwoFactorAuthException.php',
-    'graphicmarket\\kirby2fa\\Authenticator' => $baseDir . '/src/models/Authenticator.php',
+    'graphicmarket\\kirby2fa\\Login' => $baseDir . '/src/models/Login.php',
     'graphicmarket\\kirby2fa\\Register' => $baseDir . '/src/models/Register.php',
+    'graphicmarket\\kirby2fa\\TwoFactorAuthentication' => $baseDir . '/src/models/TwoFactorAuthentication.php',
 );

@@ -6,14 +6,13 @@ use RobThree\Auth\TwoFactorAuth;
 use RobThree\Auth\TwoFactorAuthException;
 
 /**
- * The Authenticator class try to cover the basic funtionalities
+ * The TwoFactorAuthentication class try to cover the basic funtionalities
  * To work with 2fa and the kirby's users
  *
  * @author    Ronald Torres <ronald@graphic.market>
- * @license   https://opensource.org/licenses/MIT
  */
 
-class Authenticator {
+class TwoFactorAuthentication {
 
     /**
      * The TwoFactorAuth instance
@@ -39,15 +38,15 @@ class Authenticator {
     /**
      * The authenticated user or that's trying to login
      *
-     * @var [type]
+     * @var [user]
      */
     private $user;
 
-    public function __construct(?string $email = null) {
+    public function __construct(?\Kirby\Cms\User $user = null) {
 
         $this->tfa = new TwoFactorAuth(option('graphicmarket.kirby-2fa.issuer'));
-        $this->cache = kirby()->cache('graphicmarket.kirby-2fa.default');
-        $this->user = kirby()->user($email);
+        $this->cache = kirby()->cache('graphicmarket.kirby-2fa');
+        $this->user = $user ?: kirby()->user();
 
     }
 
@@ -62,13 +61,15 @@ class Authenticator {
             return $this->secret;
         }
 
-        // Get the secret from the databae
+        // Get the secret from the database
         if ($r = $this->user->secret2FA()) {
             return $r;
         }
 
+        $key = "secret_{$this->user->id()}";
+
         // Get the secret from file cache
-        if ($r = $this->cache->get($this->user->id())) {
+        if ($r = $this->cache->get($key)) {
             return $this->secret = $r;
         }
 
@@ -76,7 +77,7 @@ class Authenticator {
         $this->secret = $this->tfa->createSecret(160);
 
         // Save the secret for 2 min that lets the user to scan the code
-        $this->cache->set($this->user->id(), $this->secret, 2);
+        $this->cache->set($key, $this->secret, 2);
 
         return $this->secret;
     }
@@ -94,7 +95,7 @@ class Authenticator {
     }
 
     public function removeFromCache(): bool {
-        return $this->cache->remove($this->user->id());
+        return $this->cache->remove("secret_{$this->user->id()}");
     }
 
     public function checkTimeCompatibility(): string {

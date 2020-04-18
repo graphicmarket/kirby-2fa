@@ -57,8 +57,9 @@ class ComposerStaticInitd8e9198b3cb9b6bc75073bfb7c21e299
         'RobThree\\Auth\\Providers\\Time\\NTPTimeProvider' => __DIR__ . '/..' . '/robthree/twofactorauth/lib/Providers/Time/NTPTimeProvider.php',
         'RobThree\\Auth\\TwoFactorAuth' => __DIR__ . '/..' . '/robthree/twofactorauth/lib/TwoFactorAuth.php',
         'RobThree\\Auth\\TwoFactorAuthException' => __DIR__ . '/..' . '/robthree/twofactorauth/lib/TwoFactorAuthException.php',
-        'graphicmarket\\kirby2fa\\Authenticator' => __DIR__ . '/../..' . '/src/models/Authenticator.php',
+        'graphicmarket\\kirby2fa\\Login' => __DIR__ . '/../..' . '/src/models/Login.php',
         'graphicmarket\\kirby2fa\\Register' => __DIR__ . '/../..' . '/src/models/Register.php',
+        'graphicmarket\\kirby2fa\\TwoFactorAuthentication' => __DIR__ . '/../..' . '/src/models/TwoFactorAuthentication.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
