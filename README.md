@@ -34,7 +34,7 @@ composer require graphicmarket/kirby-2fa
 
 You can add to your config file where you want the auth data will be stored, which must be a SQL lite file. Don't worry about creating the file you only need to specify the path with the filename. the file will be auto-created and configured if it doesn't exist.
 
->:warning: **This option is strongly recommended, save the file on a secure directory, don't push it to a repository.**
+>:warning: **This option is strongly recommended, save the file in a secure directory, don't push it to a repository.**
 
 
 ```php
