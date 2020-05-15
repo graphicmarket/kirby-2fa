@@ -1,6 +1,6 @@
 # Kirby 2fa
 
-Two factor authentication for the Kirby panel.
+Two factor authentication for Kirby 3 panel.
 
 ![cover](https://raw.githubusercontent.com/graphicmarket/kirby-2fa/develop/.github/cover%20kiby2fa.png)
 
