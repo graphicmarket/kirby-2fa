@@ -79,4 +79,4 @@ This plugin is provided "as is" with no guarantee. Use it at your own risk and a
 
 ## Credits
 
-- [Ronald Torres](https://github.com/rtorresn10)
+- [Ronald Torres](https://github.com/ronaldtorres)
